@@ -3,11 +3,17 @@
             [string-wrapper.core :refer :all]))
 
 (defn wrap-string [s width]
-  "")
+  (if (empty? s)
+    ""
+    s))
 
 (defn assert-wrapped [s width expected]
   (is (= expected (wrap-string s width))))
 
 (deftest a-test
   (testing "null"
-    (assert-wrapped nil 1 "")))
+    (assert-wrapped nil 1 ""))
+  (testing "empty string"
+    (assert-wrapped "" 1 ""))
+  (testing "one char"
+    (assert-wrapped "x" 1 "x")))
