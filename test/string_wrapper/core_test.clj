@@ -5,7 +5,7 @@
 (defn wrap-string [s width]
   (if (empty? s)
     ""
-    s))
+    (interpose \n s)))
 
 (defn assert-wrapped [s width expected]
   (is (= expected (wrap-string s width))))
@@ -16,4 +16,8 @@
   (testing "empty string"
     (assert-wrapped "" 1 ""))
   (testing "one char"
-    (assert-wrapped "x" 1 "x")))
+    (assert-wrapped "x" 1 "x"))
+
+  (testing "two chars"
+    (assert-wrapped "xx" 1 "x\nx")))
+
